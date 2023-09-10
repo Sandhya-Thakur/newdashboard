@@ -52,7 +52,8 @@ const LinkContentPage = () => {
     try {
       const userMessage: ChatCompletionRequestMessage = {
         role: "user",
-        content: `Generate the Youtube links in ${values.language} for student in ${values.grade} for this ${values.topic} from  subject ${values.subject}`,
+        content: `Please provide a list of recommended YouTube video links in "${values.language}" related to the topic "${values.topic}" for students in "${values.grade}" grade studying the subject "${values.subject}". Ensure each link is clearly labeled and prominently highlighted for easy access.
+`,
       };
 
       const newMessages = [...messages, userMessage];

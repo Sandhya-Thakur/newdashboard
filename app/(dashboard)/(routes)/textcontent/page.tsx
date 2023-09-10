@@ -1,7 +1,7 @@
 "use client";
 import * as z from "zod";
 import { Heading } from "@/components/heading";
-import { CaseSensitive, DivideCircleIcon } from "lucide-react";
+import { CaseSensitive } from "lucide-react";
 import { formSchema } from "./constants";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -33,7 +33,11 @@ import { Wand2 } from "lucide-react";
 const TextContentPage = () => {
   const { toast } = useToast();
   const router = useRouter();
+   const [isClient, setIsClient] = useState(false)
  
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
 
   const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([]);
   const form = useForm<z.infer<typeof formSchema>>({
@@ -51,7 +55,8 @@ const TextContentPage = () => {
     try {
       const userMessage: ChatCompletionRequestMessage = {
         role: "user",
-        content: `Generate the study material in ${values.language} for student in ${values.grade} for this ${values.topic}from  subject ${values.subject}`,
+        content: `Please produce a textbook-style chapter on the topic of "${values.topic}" in "${values.language}" for a student in "${values.grade}" grade studying the subject "${values.subject}". Ensure the content is structured with clear headings, subheadings, and key points. Highlight the essential information for easy reference, and craft the explanations to be straightforward and engaging for the target grade level.
+        `,
       };
 
       const newMessages = [...messages, userMessage];
@@ -73,7 +78,6 @@ const TextContentPage = () => {
   return (
     <div>
       <div className="flex justify-center ">
-      
         <div>
           <Heading
             title="Conversation"
