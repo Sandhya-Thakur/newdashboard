@@ -12,7 +12,7 @@ const LandingPage = () => {
       </p>
       <ul className="list-disc text-lg text-gray-600 mb-6 pl-6">
         <li>Interactive and engaging educational content</li>
-        <li>Customized learning paths tailored to your child's needs</li>
+        <li>Customized learning paths tailored to your  needs</li>
         <li>Regular assessments to track progress</li>
         <li>Fun and challenging quizzes to reinforce learning</li>
       </ul>
