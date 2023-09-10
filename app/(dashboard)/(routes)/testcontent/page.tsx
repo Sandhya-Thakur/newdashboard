@@ -28,13 +28,15 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-type Props = {
-  topic: string;
-};
+interface Props {
+  searchParams: {
+    topic?: string;
+  };
+}
 
 type Input = z.infer<typeof quizCreationSchema>;
 
-const QuizCreation = (prop:Props) => {
+const QuizCreation = ({ searchParams }: Props) => {
   const router = useRouter();
   const [showLoader, setShowLoader] = React.useState(false);
   const [finishedLoading, setFinishedLoading] = React.useState(false);
@@ -43,7 +45,7 @@ const QuizCreation = (prop:Props) => {
   const form = useForm<Input>({
     resolver: zodResolver(quizCreationSchema),
     defaultValues: {
-      topic: topicParam,
+      topic: "test",
       type: "mcq",
       amount: 3,
     },
