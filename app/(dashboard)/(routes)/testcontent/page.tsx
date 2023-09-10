@@ -28,15 +28,11 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-interface Props {
-  searchParams: {
-    topic?: string;
-  };
-}
+
 
 type Input = z.infer<typeof quizCreationSchema>;
 
-const QuizCreation = ({ searchParams }: Props) => {
+const QuizCreation = () => {
   const router = useRouter();
   const [showLoader, setShowLoader] = React.useState(false);
   const [finishedLoading, setFinishedLoading] = React.useState(false);
