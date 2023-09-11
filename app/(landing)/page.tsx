@@ -17,11 +17,6 @@ const LandingPage = () => {
         <li>Fun and challenging quizzes to reinforce learning</li>
       </ul>
       <div className="space-y-4">
-        <Link href="/sign-in">
-          <Button className="w-48 bg-blue-500 hover:bg-blue-600 text-white">
-            Sign In
-          </Button>
-        </Link>
         <Link href="/sign-up">
           <Button className="w-48 bg-gray-300 hover:bg-gray-400 text-gray-800">
             Sign Up
