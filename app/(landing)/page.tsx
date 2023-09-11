@@ -27,6 +27,11 @@ const LandingPage = () => {
             Sign Up
           </Button>
         </Link>
+        <Link href="/dashboard">
+          <Button className="w-48 bg-gray-300 hover:bg-gray-400 text-gray-800">
+            Dashboard
+          </Button>
+        </Link>
       </div>
     </div>
   );
