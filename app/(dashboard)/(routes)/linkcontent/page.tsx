@@ -76,22 +76,21 @@ const LinkContentPage = () => {
 
   return (
     <div>
-      <div className="flex justify-center ">
-        <div>
-          <Heading
-            title="Links"
-            description=""
-            icon={Link2}
-            iconColor="text-orange-700"
-            bgColor="bg-orange-500/10"
-          />
-          <div className="h-full p-4 space-y-2 max-w-3xl mx-auto">
-            <div className="px-4 lg:px-8">
-              <div>
-                <Form {...form}>
-                  <form
-                    onSubmit={form.handleSubmit(onSubmit)}
-                    className="
+      <div>
+        <Heading
+          title="Links"
+          description=""
+          icon={Link2}
+          iconColor="text-orange-700"
+          bgColor="bg-orange-500/10"
+        />
+        <div className="h-full p-4 space-y-2 max-w-3xl mx-auto">
+          <div className="px-4 lg:px-8">
+            <div>
+              <Form {...form}>
+                <form
+                  onSubmit={form.handleSubmit(onSubmit)}
+                  className="
                       rounded-lg 
                       border 
                       w-full 
@@ -103,19 +102,19 @@ const LinkContentPage = () => {
                       grid-cols-12
                       gap-2
                     "
-                  >
-                    <FormField
-                      name="language"
-                      control={form.control}
-                      render={({ field }) => (
-                        <FormItem className="col-span-12 lg:col-span-10">
-                          <FormLabel>Language</FormLabel>
-                          <FormControl>
-                            <Input
-                              disabled={isLoading}
-                              placeholder="Type your preferred language"
-                              {...field}
-                              className="
+                >
+                  <FormField
+                    name="language"
+                    control={form.control}
+                    render={({ field }) => (
+                      <FormItem className="col-span-12 lg:col-span-10">
+                        <FormLabel>Language</FormLabel>
+                        <FormControl>
+                          <Input
+                            disabled={isLoading}
+                            placeholder="Type your preferred language"
+                            {...field}
+                            className="
                                 border 
                                 outline-none 
                                 focus-visible:ring-0 
@@ -123,27 +122,27 @@ const LinkContentPage = () => {
                                 py-2 px-3 
                                 w-full
                               "
-                            />
-                          </FormControl>
-                          <FormDescription>
-                            You can choose your language
-                          </FormDescription>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      name="grade"
-                      control={form.control}
-                      render={({ field }) => (
-                        <FormItem className="col-span-12 lg:col-span-10">
-                          <FormLabel>Grade</FormLabel>
-                          <FormControl>
-                            <Input
-                              disabled={isLoading}
-                              placeholder="In which grade do you Study"
-                              {...field}
-                              className="
+                          />
+                        </FormControl>
+                        <FormDescription>
+                          You can choose your language
+                        </FormDescription>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    name="grade"
+                    control={form.control}
+                    render={({ field }) => (
+                      <FormItem className="col-span-12 lg:col-span-10">
+                        <FormLabel>Grade</FormLabel>
+                        <FormControl>
+                          <Input
+                            disabled={isLoading}
+                            placeholder="In which grade do you Study"
+                            {...field}
+                            className="
                                 border 
                                 outline-none 
                                 focus-visible:ring-0 
@@ -151,27 +150,27 @@ const LinkContentPage = () => {
                                 py-2 px-3 
                                 w-full
                               "
-                            />
-                          </FormControl>
-                          <FormDescription>
-                            You can choose your grade
-                          </FormDescription>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      name="subject"
-                      control={form.control}
-                      render={({ field }) => (
-                        <FormItem className="col-span-12 lg:col-span-10">
-                          <FormLabel>Subject</FormLabel>
-                          <FormControl>
-                            <Input
-                              disabled={isLoading}
-                              placeholder="Which subject you want to learn"
-                              {...field}
-                              className="
+                          />
+                        </FormControl>
+                        <FormDescription>
+                          You can choose your grade
+                        </FormDescription>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    name="subject"
+                    control={form.control}
+                    render={({ field }) => (
+                      <FormItem className="col-span-12 lg:col-span-10">
+                        <FormLabel>Subject</FormLabel>
+                        <FormControl>
+                          <Input
+                            disabled={isLoading}
+                            placeholder="Which subject you want to learn"
+                            {...field}
+                            className="
                                 border 
                                 outline-none 
                                 focus-visible:ring-0 
@@ -179,24 +178,24 @@ const LinkContentPage = () => {
                                 py-2 px-3 
                                 w-full
                               "
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      name="topic"
-                      control={form.control}
-                      render={({ field }) => (
-                        <FormItem className="col-span-12 lg:col-span-10">
-                          <FormLabel>Topic</FormLabel>
-                          <FormControl>
-                            <Input
-                              disabled={isLoading}
-                              placeholder="Which topic you want to learn"
-                              {...field}
-                              className="
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    name="topic"
+                    control={form.control}
+                    render={({ field }) => (
+                      <FormItem className="col-span-12 lg:col-span-10">
+                        <FormLabel>Topic</FormLabel>
+                        <FormControl>
+                          <Input
+                            disabled={isLoading}
+                            placeholder="Which topic you want to learn"
+                            {...field}
+                            className="
                                 border 
                                 outline-none 
                                 focus-visible:ring-0 
@@ -204,72 +203,71 @@ const LinkContentPage = () => {
                                 py-2 px-3 
                                 w-full
                               "
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <div className="col-span-12 lg:col-span-12 w-full flex justify-end">
-                      <Button
-                        type="submit"
-                        disabled={isLoading}
-                        size="lg"
-                        className="py-2"
-                      >
-                        Generate
-                      </Button>
-                    </div>
-                  </form>
-                </Form>
-              </div>
-              <div className="space-y-4 mt-4">
-                {isLoading && (
-                  <div className="p-8 rounded-lg w-full flex items-center justify-center bg-muted">
-                    <Loader />
-                  </div>
-                )}
-                {messages.length === 0 && !isLoading && (
-                  <div>
-                    <Empty label="Start a conversation by typing a message in the input above." />
-                  </div>
-                )}
-                {messages.length === 0 && !isLoading && (
-                  <Empty label="No conversation started." />
-                )}
-                <div className="flex flex-col-reverse gap-y-4">
-                  {messages.map((message) => (
-                    <div
-                      key={message.content}
-                      className={cn(
-                        "p-8 w-full flex items-start gap-x-8 rounded-lg",
-                        message.role === "user"
-                          ? "bg-white border border-black/10"
-                          : "bg-muted"
-                      )}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <div className="col-span-12 lg:col-span-12 w-full flex justify-end">
+                    <Button
+                      type="submit"
+                      disabled={isLoading}
+                      size="lg"
+                      className="py-2"
                     >
-                      {message.role === "user" ? <UserAvatar /> : <BotAvatar />}
-                      <ReactMarkdown
-                        components={{
-                          pre: ({ node, ...props }) => (
-                            <div className="overflow-auto w-full my-2 bg-black/10 p-2 rounded-lg">
-                              <pre {...props} />
-                            </div>
-                          ),
-                          code: ({ node, ...props }) => (
-                            <code
-                              className="bg-black/10 rounded-lg p-1"
-                              {...props}
-                            />
-                          ),
-                        }}
-                        className="text-sm overflow-hidden leading-7"
-                      >
-                        {message.content || ""}
-                      </ReactMarkdown>
-                    </div>
-                  ))}
+                      Generate
+                    </Button>
+                  </div>
+                </form>
+              </Form>
+            </div>
+            <div className="space-y-4 mt-4">
+              {isLoading && (
+                <div className="p-8 rounded-lg w-full flex items-center justify-center bg-muted">
+                  <Loader />
                 </div>
+              )}
+              {messages.length === 0 && !isLoading && (
+                <div>
+                  <Empty label="Start a conversation by typing a message in the input above." />
+                </div>
+              )}
+              {messages.length === 0 && !isLoading && (
+                <Empty label="No conversation started." />
+              )}
+              <div className="flex flex-col-reverse gap-y-4">
+                {messages.map((message) => (
+                  <div
+                    key={message.content}
+                    className={cn(
+                      "p-8 w-full flex items-start gap-x-8 rounded-lg",
+                      message.role === "user"
+                        ? "bg-white border border-black/10"
+                        : "bg-muted"
+                    )}
+                  >
+                    {message.role === "user" ? <UserAvatar /> : <BotAvatar />}
+                    <ReactMarkdown
+                      components={{
+                        pre: ({ node, ...props }) => (
+                          <div className="overflow-auto w-full my-2 bg-black/10 p-2 rounded-lg">
+                            <pre {...props} />
+                          </div>
+                        ),
+                        code: ({ node, ...props }) => (
+                          <code
+                            className="bg-black/10 rounded-lg p-1"
+                            {...props}
+                          />
+                        ),
+                      }}
+                      className="text-sm overflow-hidden leading-7"
+                    >
+                      {message.content || ""}
+                    </ReactMarkdown>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
