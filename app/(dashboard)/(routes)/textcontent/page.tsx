@@ -80,7 +80,7 @@ const TextContentPage = () => {
     <div>
       <div>
         <Heading
-          title="Conversation"
+          title="Content"
           description=""
           icon={CaseSensitive}
           iconColor="text-pink-700"
