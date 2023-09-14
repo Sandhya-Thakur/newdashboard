@@ -32,6 +32,26 @@ import { BotAvatar } from "@/components/bot-avatar";
 import { cn } from "@/lib/utils";
 import { Separator } from "@/components/ui/separator";
 import { Wand2 } from "lucide-react";
+interface Video {
+  title: string;
+  link: string;
+}
+
+interface VideoResponse {
+  videos: Video[];
+}
+
+function parseVideoLinks(content: string): Video[] | null {
+  try {
+    const parsed: VideoResponse = JSON.parse(content);
+    if (parsed && parsed.videos) {
+      return parsed.videos;
+    }
+  } catch (error) {
+    console.error("Failed to parse content:", error);
+  }
+  return null;
+}
 
 const LinkContentPage = () => {
   const { toast } = useToast();
@@ -53,7 +73,7 @@ const LinkContentPage = () => {
     try {
       const userMessage: ChatCompletionRequestMessage = {
         role: "user",
-        content: `Please provide a list of recommended YouTube video links in "${values.language}" related to the topic "${values.topic}" for students in "${values.grade}" grade studying the subject "${values.subject}". Ensure each link is clearly labeled and prominently highlighted for easy access.
+        content: `Generate atleast 10 recommended YouTube video links in "${values.language}" related to the topic "${values.topic}" for students in "${values.grade}" grade studying the subject "${values.subject}". Provide them in JSON format with the following keys: title, link
 `,
       };
 
@@ -248,24 +268,26 @@ const LinkContentPage = () => {
                     )}
                   >
                     {message.role === "user" ? <UserAvatar /> : <BotAvatar />}
-                    <ReactMarkdown
-                      components={{
-                        pre: ({ node, ...props }) => (
-                          <div className="overflow-auto w-full my-2 bg-black/10 p-2 rounded-lg">
-                            <pre {...props} />
-                          </div>
-                        ),
-                        code: ({ node, ...props }) => (
-                          <code
-                            className="bg-black/10 rounded-lg p-1"
-                            {...props}
-                          />
-                        ),
-                      }}
-                      className="text-sm overflow-hidden leading-7"
-                    >
-                      {message.content || ""}
-                    </ReactMarkdown>
+                    <div>
+                      {message.role === "assistant" &&
+                      message.content &&
+                      parseVideoLinks(message.content)
+                        ? parseVideoLinks(message.content).map(
+                            (video: Video) => (
+                              <div key={video.link}>
+                                <a
+                                  className="text-blue-500 hover:text-blue-700 underline"
+                                  href={video.link}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                >
+                                  {video.title}
+                                </a>
+                              </div>
+                            )
+                          )
+                        : message.content}
+                    </div>
                   </div>
                 ))}
               </div>
