@@ -32,26 +32,25 @@ import { BotAvatar } from "@/components/bot-avatar";
 import { cn } from "@/lib/utils";
 import { Separator } from "@/components/ui/separator";
 import { Wand2 } from "lucide-react";
-interface Video {
+interface LinkObject {
   title: string;
   link: string;
 }
 
-interface VideoResponse {
-  videos: Video[];
-}
+const parseResponse = (text: string): LinkObject[] => {
+  const regex = /Title: (.*) Link: (.*)\n/g;
+  let match;
+  const links: LinkObject[] = [];
 
-function parseVideoLinks(content: string): Video[] | null {
-  try {
-    const parsed: VideoResponse = JSON.parse(content);
-    if (parsed && parsed.videos) {
-      return parsed.videos;
-    }
-  } catch (error) {
-    console.error("Failed to parse content:", error);
+  while ((match = regex.exec(text)) !== null) {
+    links.push({
+      title: match[1],
+      link: match[2],
+    });
   }
-  return null;
-}
+
+  return links;
+};
 
 const LinkContentPage = () => {
   const { toast } = useToast();
@@ -269,24 +268,20 @@ const LinkContentPage = () => {
                   >
                     {message.role === "user" ? <UserAvatar /> : <BotAvatar />}
                     <div>
-                      {message.role === "assistant" &&
-                      message.content &&
-                      parseVideoLinks(message.content)
-                        ? parseVideoLinks(message.content).map(
-                            (video: Video) => (
-                              <div key={video.link}>
-                                <a
-                                  className="text-blue-500 hover:text-blue-700 underline"
-                                  href={video.link}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                >
-                                  {video.title}
-                                </a>
-                              </div>
-                            )
-                          )
-                        : message.content}
+                      {message.role === "system" &&
+                      message.content?.includes("Title:")
+                        ? parseResponse(message.content).map((linkObj) => (
+                            <div key={linkObj.link}>
+                              <a
+                                href={linkObj.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                {linkObj.title}
+                              </a>
+                            </div>
+                          ))
+                        : message.content || ""}
                     </div>
                   </div>
                 ))}
