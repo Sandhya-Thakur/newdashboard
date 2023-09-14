@@ -7,6 +7,7 @@ import {
   LayoutDashboard,
   MessageSquare,
   Settings,
+  Code,
 } from "lucide-react";
 import { ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -21,9 +22,15 @@ const tools = [
     color: "text-violet-500",
     bgColor: "bg-violet-500/10",
   },
+  {
+    label: 'Code Generator',
+    icon: Code,
+    color: "text-green-700",
+    href: '/code',
+  },
 
   {
-    label: "Content Generation",
+    label: "Content Generator",
     icon: CaseSensitive,
     color: "text-pink-700",
     href: "/textcontent",

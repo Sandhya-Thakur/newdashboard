@@ -12,6 +12,7 @@ import {
   LayoutDashboard,
   MessageSquare,
   Settings,
+  Code,
 } from "lucide-react";
 
 import { usePathname } from "next/navigation";
@@ -30,13 +31,19 @@ const routes = [
     color: "text-violet-500",
   },
   {
-    label: "Content Generation",
+    label: 'Code Generator',
+    icon: Code,
+    color: "text-green-700",
+    href: '/code',
+  },
+  {
+    label: "Content Generator",
     icon: CaseSensitive,
     color: "text-pink-700",
     href: "/textcontent",
   },
   {
-    label: "Links Generation",
+    label: "Links Generator",
     icon: Link2,
     color: "text-orange-700",
     href: "/linkcontent",
