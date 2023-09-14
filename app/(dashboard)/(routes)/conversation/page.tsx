@@ -115,9 +115,7 @@ const Conversation = () => {
               <Empty label="Start a conversation by typing a message in the input above." />
             </div>
           )}
-          {messages.length === 0 && !isLoading && (
-            <Empty label="No conversation started." />
-          )}
+
           <div className="flex flex-col-reverse gap-y-4">
             {messages.map((message) => (
               <div

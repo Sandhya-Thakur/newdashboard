@@ -30,31 +30,15 @@ import { Loader } from "@/components/loader";
 import { UserAvatar } from "@/components/user-avatar";
 import { BotAvatar } from "@/components/bot-avatar";
 import { cn } from "@/lib/utils";
-import { Separator } from "@/components/ui/separator";
-import { Wand2 } from "lucide-react";
-interface LinkObject {
+interface VideoLink {
   title: string;
   link: string;
 }
 
-const parseResponse = (text: string): LinkObject[] => {
-  const regex = /Title: (.*) Link: (.*)\n/g;
-  let match;
-  const links: LinkObject[] = [];
-
-  while ((match = regex.exec(text)) !== null) {
-    links.push({
-      title: match[1],
-      link: match[2],
-    });
-  }
-
-  return links;
-};
-
 const LinkContentPage = () => {
   const { toast } = useToast();
   const router = useRouter();
+  const [links, setLinks] = useState<VideoLink[]>([]);
 
   const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([]);
   const form = useForm<z.infer<typeof formSchema>>({
@@ -72,7 +56,7 @@ const LinkContentPage = () => {
     try {
       const userMessage: ChatCompletionRequestMessage = {
         role: "user",
-        content: `Generate atleast 10 recommended YouTube video links in "${values.language}" related to the topic "${values.topic}" for students in "${values.grade}" grade studying the subject "${values.subject}". Provide them in JSON format with the following keys: title, link
+        content: `Generate 10 valid YouTube video links in "${values.language}" related to the topic "${values.topic}" for students in "${values.grade}" grade studying the subject "${values.subject}". Provide them in JSON format with the following keys: title, link
 `,
       };
 
@@ -83,6 +67,14 @@ const LinkContentPage = () => {
       });
       setMessages((current) => [...current, userMessage, response.data]);
       console.log(response.data);
+
+      // Parse the 'content' from the response
+      const parsedData = JSON.parse(response.data.content);
+
+      // Extract the 'videos' key, which holds the links
+      const returnedLinks = parsedData.videos;
+
+      setLinks(returnedLinks);
 
       form.reset();
     } catch (error: any) {
@@ -252,37 +244,17 @@ const LinkContentPage = () => {
                   <Empty label="Start a conversation by typing a message in the input above." />
                 </div>
               )}
-              {messages.length === 0 && !isLoading && (
-                <Empty label="No conversation started." />
-              )}
               <div className="flex flex-col-reverse gap-y-4">
-                {messages.map((message) => (
-                  <div
-                    key={message.content}
-                    className={cn(
-                      "p-8 w-full flex items-start gap-x-8 rounded-lg",
-                      message.role === "user"
-                        ? "bg-white border border-black/10"
-                        : "bg-muted"
-                    )}
-                  >
-                    {message.role === "user" ? <UserAvatar /> : <BotAvatar />}
-                    <div>
-                      {message.role === "system" &&
-                      message.content?.includes("Title:")
-                        ? parseResponse(message.content).map((linkObj) => (
-                            <div key={linkObj.link}>
-                              <a
-                                href={linkObj.link}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                              >
-                                {linkObj.title}
-                              </a>
-                            </div>
-                          ))
-                        : message.content || ""}
-                    </div>
+                {links.map((link, index) => (
+                  <div key={index} className="p-8 w-full">
+                    <a
+                      href={link.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-500 hover:text-blue-700 hover:underline font-medium"
+                    >
+                      {link.title}
+                    </a>
                   </div>
                 ))}
               </div>
