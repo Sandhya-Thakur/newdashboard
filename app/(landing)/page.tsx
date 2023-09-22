@@ -15,6 +15,7 @@ const LandingPage = () => {
         <li>Customized learning paths tailored to your  needs</li>
         <li>Regular assessments to track progress</li>
         <li>Fun and challenging quizzes to reinforce learning</li>
+        <li>say hello to yout learning friend</li>
       </ul>
       <div className="space-y-4">
         <Link href="/sign-up">
